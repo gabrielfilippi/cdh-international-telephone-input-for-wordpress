@@ -42,12 +42,15 @@ class CDH_International_Telephone_Number_Fields {
         if(defined("CDH_CUSTOM_BILLING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS")){
             $custom_fields_arr = CDH_CUSTOM_BILLING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS;
 
-            foreach ($custom_fields_arr as $key => $value) {
+            foreach ($custom_fields_arr as $field) {
+                $key = $field['name'];
+
                 if(isset($fields[$key])){
                     $fields[$key]['class'][] = 'phone-number-group';
                     $fields[$key]['input_class'][] = 'cdh-intl-tel';
                     $fields[$key]['custom_attributes'] = array('type' => 'tel');
                 }
+
             }
 
         }
@@ -81,12 +84,15 @@ class CDH_International_Telephone_Number_Fields {
         if(defined("CDH_CUSTOM_SHIPPING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS")){
             $custom_fields_arr = CDH_CUSTOM_SHIPPING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS;
             
-            foreach ($custom_fields_arr as $key) {
+            foreach ($custom_fields_arr as $field) {
+                $key = $field['name'];
+
                 if(isset($fields[$key])){
                     $fields[$key]['class'][] = 'phone-number-group';
                     $fields[$key]['input_class'][] = 'cdh-intl-tel';
                     $fields[$key]['custom_attributes'] = array('type' => 'tel');
                 }
+                
             }
 
         }
@@ -127,9 +133,13 @@ class CDH_International_Telephone_Number_Fields {
         if(defined("CDH_CUSTOM_BILLING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS")){
             $custom_fields_arr = CDH_CUSTOM_BILLING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS;
             
-            foreach ($custom_fields_arr as $key) {
-                if(isset($_POST[$key + "_full_number"]) && !empty($_POST[$key + "_full_number"])){
-                    update_post_meta($order_id, $key, sanitize_text_field($_POST[$key + "_full_number"]));
+            foreach ($custom_fields_arr as $field) {
+                $key = $field['name'];
+                $is_private = $field['is_private'];
+                
+                if(isset($_POST[$key . "_full_number"]) && !empty($_POST[$key . "_full_number"])){
+                    $meta_key = $is_private ? '_' . $key : $key;
+                    update_post_meta($order_id, $meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
                 }
             }
 
@@ -141,12 +151,16 @@ class CDH_International_Telephone_Number_Fields {
         if(defined("CDH_CUSTOM_SHIPPING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS")){
             $custom_fields_arr = CDH_CUSTOM_SHIPPING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS;
             
-            foreach ($custom_fields_arr as $key) {
-                if(isset($_POST[$key]) && !empty($_POST[$key])){
-                    update_post_meta($order_id, $key, sanitize_text_field($_POST[$key . "_full_number"]));
+            foreach ($custom_fields_arr as $field) {
+                $key = $field['name'];
+                $is_private = $field['is_private'];
+                
+                if(isset($_POST[$key . "_full_number"]) && !empty($_POST[$key . "_full_number"])){
+                    $meta_key = $is_private ? '_' . $key : $key;
+                    update_post_meta($order_id, $meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
                 }
             }
-
+            
         }
     }
 
@@ -183,12 +197,16 @@ class CDH_International_Telephone_Number_Fields {
         if(defined("CDH_CUSTOM_BILLING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS")){
             $custom_fields_arr = CDH_CUSTOM_BILLING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS;
             
-            foreach ($custom_fields_arr as $key) {
-                if(isset($_POST[$key + "_full_number"]) && $load_address === 'billing' && !empty($_POST[$key + "_full_number"])){
-                    update_user_meta($user_id, $key, sanitize_text_field($_POST[$key + "_full_number"]));
+            foreach ($custom_fields_arr as $field) {
+                $key = $field['name'];
+                $is_private = $field['is_private'];
+                
+                if(isset($_POST[$key . "_full_number"]) && !empty($_POST[$key . "_full_number"])){
+                    $meta_key = $is_private ? '_' . $key : $key;
+                    update_user_meta($user_id, $meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
                 }
             }
-
+            
         }
 
         /**
@@ -197,13 +215,18 @@ class CDH_International_Telephone_Number_Fields {
         if(defined("CDH_CUSTOM_SHIPPING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS")){
             $custom_fields_arr = CDH_CUSTOM_SHIPPING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS;
             
-            foreach ($custom_fields_arr as $key) {
-                if(isset($_POST[$key]) && $load_address === 'shipping' && !empty($_POST[$key])){
-                    update_user_meta($user_id, $key, sanitize_text_field($_POST[$key . "_full_number"]));
+            foreach ($custom_fields_arr as $field) {
+                $key = $field['name'];
+                $is_private = $field['is_private'];
+                
+                if(isset($_POST[$key . "_full_number"]) && !empty($_POST[$key . "_full_number"])){
+                    $meta_key = $is_private ? '_' . $key : $key;
+                    update_user_meta($user_id, $meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
                 }
             }
-
+            
         }
+
     }
 
 }

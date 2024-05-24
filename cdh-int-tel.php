@@ -3,7 +3,7 @@
  * Plugin Name: CodeHive - International Telephone Number for Wordpress
  * Plugin URI: https://github.com/gabrielfilippi/cdh-International-Telephone-Input-for-Wordpress/
  * Description: Adiciona suporte para telefones internacionais nos campos de telefone do WordPress e WooCommerce usando a biblioteca "International Telephone Input".S
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: CodeHive
  * Author URI: https://codehive.com.br
  * License: GPL-2.0+
