@@ -16,8 +16,8 @@ O plugin localiza os campos de telefone no WordPress e WooCommerce e adiciona a 
 = O plugin é compatível com todos os temas? =
 O plugin deve funcionar com a maioria dos temas que seguem os padrões do WordPress. Caso encontre algum problema, por favor, entre em contato conosco.
 
-= Tenho um campo customizado de telefone que não é padrão do Woocommerce, como faço para que fique no padrão internacional? =
-Adiciones o código abaixo no arquivo wp-config.php:
+= Tenho um campo customizado de telefone que não é padrão do Woocommerce, como faço para que fique no padrão internacional?
+Adicione o código abaixo no arquivo wp-config.php:
 
 ```php
 // para campos customizados no endereço de faturamento (billing)
