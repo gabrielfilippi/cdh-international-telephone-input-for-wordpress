@@ -16,6 +16,34 @@ O plugin localiza os campos de telefone no WordPress e WooCommerce e adiciona a 
 = O plugin é compatível com todos os temas? =
 O plugin deve funcionar com a maioria dos temas que seguem os padrões do WordPress. Caso encontre algum problema, por favor, entre em contato conosco.
 
+= Tenho um campo customizado de telefone que não é padrão do Woocommerce, como faço para que fique no padrão internacional? =
+Adiciones o código abaixo no arquivo wp-config.php:
+
+```php
+// para campos customizados no endereço de faturamento (billing)
+define(
+	"CDH_CUSTOM_BILLING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS",
+	array( 
+		array( 
+			"name" => "MEU_CAMPO_CUSTOMIZADO",
+			"is_private" => true
+		),
+	)
+);
+
+// para campos customizados no endereço de entrega (shipping)
+define(
+	"CDH_CUSTOM_SHIPPING_INTERNATIONAL_TALEPHONE_NUMBER_FIELDS",
+	array( 
+		array( 
+			"name" => "MEU_CAMPO_CUSTOMIZADO",
+			"is_private" => true
+		),
+	)
+);
+```
+Substitua "MEU_CAMPO_CUSTOMIZADO" pelo nome do seu campo customizado. O parâmetro "is_private" deve ser definido como true se o campo for privado, caso contrário, defina como false.
+
 ## Contribuição
 
 Se você deseja contribuir para o desenvolvimento do plugin, siga estas etapas:
