@@ -107,8 +107,12 @@ jQuery(document).ready(function ($) {
                     $(field).addClass("cdh-intl-tel-invalid-phone");
                 }
             } else {
-                $(field).closest(".phone-number-group").find(".error").hide();
-                $(field).removeClass("cdh-intl-tel-invalid-phone");
+                if($(field).closest(".phone-number-group.validate-required").length > 0){ // is required
+                    $(field).closest(".phone-number-group").find(".error").html("Telefone é um campo obrigatório.").show();
+                }else{ // not required, hide error message
+                    $(field).closest(".phone-number-group").find(".error").hide();
+                    $(field).removeClass("cdh-intl-tel-invalid-phone");
+                }
             }
         }
 
