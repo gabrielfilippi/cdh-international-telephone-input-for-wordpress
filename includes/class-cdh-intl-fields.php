@@ -105,26 +105,28 @@ class CDH_International_Telephone_Number_Fields {
      * overwriting the national value of each field.
      */
     public function cdh_intl_save_order_phone_fields($order_id) {
+        $order = wc_get_order($order_id);
+
         /**
          * Woocommerce billing default fields
          */
         if (isset($_POST["billing_phone_full_number"]) && !empty($_POST['billing_phone_full_number'])) {
-            update_post_meta($order_id, '_billing_phone', sanitize_text_field($_POST['billing_phone_full_number']));
+            $order->update_meta_data('_billing_phone', sanitize_text_field($_POST['billing_phone_full_number']));
         }
 
         if (isset($_POST["billing_cellphone_full_number"]) && !empty($_POST['billing_cellphone_full_number'])) {
-            update_post_meta($order_id, '_billing_cellphone', sanitize_text_field($_POST['billing_cellphone_full_number']));
+            $order->update_meta_data('_billing_cellphone', sanitize_text_field($_POST['billing_cellphone_full_number']));
         }
 
         /**
          * Woocommerce shipping default fields
          */
         if (isset($_POST["shipping_phone_full_number"]) && !empty($_POST['shipping_phone_full_number'])) {
-            update_post_meta($order_id, '_shipping_phone', sanitize_text_field($_POST['shipping_phone_full_number']));
+            $order->update_meta_data('_shipping_phone', sanitize_text_field($_POST['shipping_phone_full_number']));
         }
 
         if (isset($_POST["shipping_cellphone_full_number"]) && !empty($_POST['shipping_cellphone_full_number'])) {
-            update_post_meta($order_id, '_shipping_cellphone', sanitize_text_field($_POST['shipping_cellphone_full_number']));
+            $order->update_meta_data('_shipping_cellphone', sanitize_text_field($_POST['shipping_cellphone_full_number']));
         }
 
         /**
@@ -139,7 +141,7 @@ class CDH_International_Telephone_Number_Fields {
                 
                 if(isset($_POST[$key . "_full_number"]) && !empty($_POST[$key . "_full_number"])){
                     $meta_key = $is_private ? '_' . $key : $key;
-                    update_post_meta($order_id, $meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
+                    $order->update_meta_data($meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
                 }
             }
 
@@ -157,11 +159,12 @@ class CDH_International_Telephone_Number_Fields {
                 
                 if(isset($_POST[$key . "_full_number"]) && !empty($_POST[$key . "_full_number"])){
                     $meta_key = $is_private ? '_' . $key : $key;
-                    update_post_meta($order_id, $meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
+                    $order->update_meta_data($meta_key, sanitize_text_field($_POST[$key . "_full_number"]));
                 }
             }
             
         }
+        $order->save();
     }
 
     /**
