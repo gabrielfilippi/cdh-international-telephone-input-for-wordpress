@@ -111,7 +111,7 @@ class CDH_International_Telephone_Number_Fields {
          * Woocommerce billing default fields
          */
         if (isset($_POST["billing_phone_full_number"]) && !empty($_POST['billing_phone_full_number'])) {
-            $order->update_meta_data('_billing_phone', sanitize_text_field($_POST['billing_phone_full_number']));
+            $order->set_billing_phone(sanitize_text_field($_POST['billing_phone_full_number']));
         }
 
         if (isset($_POST["billing_cellphone_full_number"]) && !empty($_POST['billing_cellphone_full_number'])) {
@@ -122,7 +122,7 @@ class CDH_International_Telephone_Number_Fields {
          * Woocommerce shipping default fields
          */
         if (isset($_POST["shipping_phone_full_number"]) && !empty($_POST['shipping_phone_full_number'])) {
-            $order->update_meta_data('_shipping_phone', sanitize_text_field($_POST['shipping_phone_full_number']));
+            $order->set_shipping_phone(sanitize_text_field($_POST['shipping_phone_full_number']));
         }
 
         if (isset($_POST["shipping_cellphone_full_number"]) && !empty($_POST['shipping_cellphone_full_number'])) {
